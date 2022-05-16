@@ -8,13 +8,20 @@ import { FooterComponent } from './master/footer/footer.component';
 import { LoginComponent } from './module/login/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HomeComponent } from './module/customer/home/home.component';
+import { OrdersComponent } from './module/customer/orders/orders.component';
+import { NewOrderComponent } from './module/customer/new-order/new-order.component';
+import {NgxPaginationModule} from 'ngx-pagination'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    OrdersComponent,
+    NewOrderComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +29,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

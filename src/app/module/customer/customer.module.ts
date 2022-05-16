@@ -6,17 +6,17 @@ import { HomeComponent } from './home/home.component';
 import { OrdersComponent } from './orders/orders.component';
 import { NewOrderComponent } from './new-order/new-order.component';
 import { RouterModule } from '@angular/router';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    HomeComponent,
-    OrdersComponent,
-    NewOrderComponent
+
   ],
   imports: [
     CommonModule,
     CustomerRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule
   ]
 })

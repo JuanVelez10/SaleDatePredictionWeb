@@ -27,10 +27,11 @@ export class LoginComponent implements OnInit {
   };
 
   message : string = "";
+  isSubmit=false;
 
   onSubmit() {
     this.message = "";
-
+    this.isSubmit=true;
     if (this.loginForm.invalid) {
       return;
     }

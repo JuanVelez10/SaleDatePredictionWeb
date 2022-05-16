@@ -31,7 +31,6 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/materialize-css/dist/js/materialize.min.js",
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
@@ -71,6 +70,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "Web:build:production"

@@ -12,7 +12,9 @@ body {
     height: 200px;
 }
 
-
+.alert {
+    opacity: 0.5;
+}
 
 
 

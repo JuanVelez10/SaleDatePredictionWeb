@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -13,21 +15,45 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(8)]]
   });;
   
-  isFormSubmitted = false;
-
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder,private loginService: LoginService, private router: Router) {}
 
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    this.isFormSubmitted = true;
+  LoginRequest: any = {
+    Email: '',
+    Password: ''
+  };
 
-    // Return if form is invalid
+  message : string = "";
+
+  onSubmit() {
+    this.message = "";
+
     if (this.loginForm.invalid) {
       return;
     }
-    
+
+    this.LoginRequest.Email = this.loginForm.controls.email.value;
+    this.LoginRequest.Password = this.loginForm.controls.password.value;
+
+    this.loginService.login(this.LoginRequest).subscribe(
+      result => {
+        
+        if(result.data != null){
+          localStorage.setItem('token', JSON.stringify(result.data.token));
+          this.router.navigate(['/home']);
+        }
+        else {
+          this.message = result.message;
+        }
+
+      },
+      error => {
+        this.message = error.message;
+      }
+    );
+
   }
 
 

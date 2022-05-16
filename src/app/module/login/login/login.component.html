@@ -7,7 +7,11 @@
         <br />
 
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            
+
+            <div *ngIf="!(message === '')" class="alert alert-danger row col-md-12">
+                <strong>{{message}}</strong>
+            </div>
+
             <div class="row col-md-12">
                 <p class="control-label text">Email</p>
                 <input type="email" formControlName="email" class="opacity form-control" id="email" [ngClass]="{ 'is-invalid': loginForm.controls.email.errors }"/>
@@ -29,7 +33,7 @@
 
             <br />
 
-            <div class="row center-align col-md-12">
+            <div class="row col-md-12">
                 <button [disabled]="loginForm.invalid" class="btn btn-primary" type="submit">Login</button>
             </div>
         </form> 

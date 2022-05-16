@@ -14,7 +14,7 @@ export class LoginService {
   constructor(private http: HttpClient) {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       })
     };
   }
@@ -23,4 +23,19 @@ export class LoginService {
     return this.http.post('api/Account/Login', data, this.httpOptions);
   }
   
+  validate(): Observable<any> {
+    var token = localStorage.getItem('token');
+
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization':'Bearer ' + token,
+        'Accept':'application/json'
+      })
+    };
+
+    return this.http.get('api/Account/Logged', this.httpOptions);
+  }
+
+
 }

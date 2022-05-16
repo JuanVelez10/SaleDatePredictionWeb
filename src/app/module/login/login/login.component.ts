@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,private loginService: LoginService, private router: Router) {}
 
   ngOnInit(): void {
+    localStorage.removeItem('token');
   }
 
   LoginRequest: any = {
@@ -37,22 +38,16 @@ export class LoginComponent implements OnInit {
     this.LoginRequest.Email = this.loginForm.controls.email.value;
     this.LoginRequest.Password = this.loginForm.controls.password.value;
 
-    this.loginService.login(this.LoginRequest).subscribe(
-      result => {
-        
+    this.loginService.login(this.LoginRequest).subscribe(result => {
         if(result.data != null){
-          localStorage.setItem('token', JSON.stringify(result.data.token));
+          localStorage.setItem('token',result.data.token);
           this.router.navigate(['/home']);
         }
         else {
           this.message = result.message;
         }
-
       },
-      error => {
-        this.message = "Error !!";
-      }
-    );
+      error => {this.message = "Error !!";});
 
   }
 

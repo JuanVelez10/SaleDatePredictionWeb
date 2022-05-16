@@ -6,11 +6,11 @@
         <br />
         <br />
 
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="!(message === '')" class="alert alert-danger row col-md-12">
+            <strong>{{message}}</strong>
+        </div>
 
-            <div *ngIf="!(message === '')" class="alert alert-danger row col-md-12">
-                <strong>{{message}}</strong>
-            </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
             <div class="row col-md-12">
                 <p class="control-label text">Email</p>

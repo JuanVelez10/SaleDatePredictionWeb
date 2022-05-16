@@ -1,0 +1,9 @@
+.text {
+    color: snow;
+    text-shadow: 2px 2px 2px #DA1801;   
+    font-size: medium;
+}
+
+.opacity {
+    opacity: 0.6;
+}

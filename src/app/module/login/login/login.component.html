@@ -1,0 +1,43 @@
+<div class="row">
+
+    <div class="col-md-4"> </div>
+
+    <div class="col-md-4">
+        <br />
+        <br />
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            
+            <div class="row col-md-12">
+                <p class="control-label text">Email</p>
+                <input type="email" formControlName="email" class="opacity form-control" id="email" [ngClass]="{ 'is-invalid': loginForm.controls.email.errors }"/>
+               
+                <div class="invalid-feedback" *ngIf="loginForm.controls.email.errors">
+                    <div *ngIf="loginForm.controls.email.errors.required">Email is required</div>
+                </div>
+            </div>
+
+            <div class="row col-md-12">
+                <p class="control-label text">Password</p>
+                <input type="password" formControlName="password" class="opacity form-control" id="password" [ngClass]="{ 'is-invalid': loginForm.controls.password.errors }"/>
+           
+                <div class="invalid-feedback" *ngIf="loginForm.controls.password.errors">
+                    <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>
+                    <div *ngIf="loginForm.controls.password.errors.minlength">Password min 8 </div>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row center-align col-md-12">
+                <button [disabled]="loginForm.invalid" class="btn btn-primary" type="submit">Login</button>
+            </div>
+        </form> 
+
+    </div>
+
+    <div class="col-md-4"></div>
+
+</div>
+<br />
+<br />

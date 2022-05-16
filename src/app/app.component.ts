@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Web';
+  title = 'Sales Date Prediction App';
+
+  ngOnInit(): void {
+
+  }
+
+
 }

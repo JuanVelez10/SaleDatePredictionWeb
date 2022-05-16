@@ -17,7 +17,7 @@ export class CustomerService {
     };
   }
 
-  getCustomers(): Observable<any> {
+  getCustomers(name:any): Observable<any> {
     var token = localStorage.getItem('token');
 
     this.httpOptions = {
@@ -28,7 +28,7 @@ export class CustomerService {
       })
     };
 
-    return this.http.get('api/Customer', this.httpOptions);
+    return this.http.get('api/Customer/' + name, this.httpOptions);
   }
 
 

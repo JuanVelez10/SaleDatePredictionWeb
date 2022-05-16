@@ -4,6 +4,17 @@
     </a>
 </div>
 
+<form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+    <div class="input-group marginSearch" align="center">
+        <div class="form-outline">
+           <input type="search" formControlName="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        </div>
+        <button type="button" class="btn btn-primary" type="submit">
+         <i class="fa fa-search"></i>
+        </button>
+    </div>
+</form> 
+
 <div *ngIf="!(message === '')" class="alert alert-danger row col-md-4 margin" align="center">
     <strong>{{message}}</strong>
 </div>
@@ -18,11 +29,11 @@
         <div class="panel white alert">
                 <h6 class="col-md-12"> <B>Last Order Date:</B> {{item.lastOrderDate}}</h6>
                 <h6 class="col-md-12"> <B>Next Predicted Order:</B> {{item.nextPredictedOrderDate}}</h6>
-                <a href ="/orders" routerLinkActive="active" class="margin">
+                <a href ="/orders/{{item.custid}}" routerLinkActive="active" class="margin">
                     <button class="btn btn-danger">View Orders</button>
                 </a>
 
-                <a href ="/new" routerLinkActive="active" class="margin">
+                <a href ="/new/{{item.custid}}" routerLinkActive="active" class="margin">
                     <button class="btn btn-success">New Order</button>
                 </a>
         </div>

@@ -6,8 +6,8 @@ import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   { path:"home",component:HomeComponent} ,
-  { path:"orders",component:OrdersComponent} ,
-  { path:"new",component:NewOrderComponent} 
+  { path:"orders/:id",component:OrdersComponent} ,
+  { path:"new/:id",component:NewOrderComponent} 
 ];
 
 @NgModule({

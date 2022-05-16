@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/customer.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -10,7 +11,11 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private loginService: LoginService,private customerService: CustomerService, private router: Router) { }
+  searchForm: FormGroup = this.formBuilder.group({
+    search: [''],
+  });
+
+  constructor(private formBuilder: FormBuilder,private loginService: LoginService,private customerService: CustomerService, private router: Router) { }
   
   customers:any;
   message : string = "";
@@ -18,7 +23,7 @@ export class HomeComponent implements OnInit {
   
   ngOnInit(): void {
     this.validate();
-    this.loadCustomer();
+    this.loadCustomer("none");
   }
 
   validate(){
@@ -33,8 +38,8 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  loadCustomer(){
-    this.customerService.getCustomers().subscribe(
+  loadCustomer(name:any){
+    this.customerService.getCustomers(name).subscribe(
       result => {
         if(result != null){
           this.customers = result;
@@ -46,6 +51,12 @@ export class HomeComponent implements OnInit {
       error => {
         this.message ="Error !!";
       });
+  }
+
+  onSearch() {
+    var name = this.searchForm.controls.search.value;
+    if(name === "") name="none";
+    this.loadCustomer(name);
   }
 
 

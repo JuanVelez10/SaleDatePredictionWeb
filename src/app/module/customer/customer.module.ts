@@ -5,6 +5,7 @@ import { CustomerRoutingModule } from './customer-routing.module';
 import { HomeComponent } from './home/home.component';
 import { OrdersComponent } from './orders/orders.component';
 import { NewOrderComponent } from './new-order/new-order.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { NewOrderComponent } from './new-order/new-order.component';
   ],
   imports: [
     CommonModule,
-    CustomerRoutingModule
+    CustomerRoutingModule,
+    RouterModule
   ]
 })
 export class CustomerModule { }

@@ -11,7 +11,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private loginService: LoginService, private router: Router) { }
 
-
   ngOnInit(): void {
     this.loginService.validate().subscribe(
       result => {
@@ -23,8 +22,5 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['/login']);
       });
   }
-
-
-
 
 }

@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
 
       },
       error => {
-        this.message = error.message;
+        this.message = "Error !!";
       }
     );
 

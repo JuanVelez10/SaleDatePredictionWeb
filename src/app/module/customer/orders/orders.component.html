@@ -1,1 +1,44 @@
-<p>orders works!</p>
+<div align="center">
+    <a href = "/home" routerLinkActive="active" class="margin">
+        <button class="btn btn-primary">Back</button>
+    </a>
+    <a href = "/login" routerLinkActive="active" class="margin">
+        <button class="btn btn-success">Log out</button>
+    </a>
+</div>
+
+<div *ngIf="!(message === '')" class="alert alert-danger row col-md-4 margin" align="center">
+    <strong>{{message}}</strong>
+</div>
+
+<div class="row margin" align="center">
+    <div class="col-md-4" *ngFor="let item of orders | paginate: { itemsPerPage: 6, currentPage: p }">
+
+        <div class="panel blue">
+            <h6 class="col-md-12"> <B>Order Id:</B> {{item.orderid}}</h6>
+        </div>
+
+        <div class="panel white alert">
+                <h6 class="col-md-12"> <B>Required Date:</B> {{item.requireddate}}</h6>
+                <h6 class="col-md-12"> <B>Shipped Date:</B> {{item.shippeddate}}</h6>
+                <h6 class="col-md-12"> <B>Ship Name:</B> {{item.shipname}}</h6>
+                <h6 class="col-md-12"> <B>Ship Address:</B> {{item.shipaddress}}</h6>
+                <h6 class="col-md-12"> <B>Ship City:</B> {{item.shipcity}}</h6>
+
+                <h5>Products:</h5>
+                <div *ngFor="let  detail of item.orderDetails">
+                    <dd class="col-sm-12">
+                        <b>{{detail.product.productname}} </b> {{detail.qty}} x {{detail.unitprice}} 
+                    </dd>
+                </div>
+
+
+        </div>
+    </div>
+</div>
+
+<pagination-controls (pageChange)="p = $event" class="text" align="center">
+    responsive="true"
+    previousLabel="Previous"
+    nextLabel="Next"
+</pagination-controls>

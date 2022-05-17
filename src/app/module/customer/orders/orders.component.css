@@ -1,0 +1,48 @@
+.ImageSalir {
+    width: 80px;
+    height: 80px;
+    margin: 10px 0px -10px 0px;
+}
+
+.Salir {
+    background-color: Transparent;
+    border: none;
+}
+
+.panel {
+    border: 2px solid #00539a;
+    border-radius: 2px;
+}
+
+
+.panelHome {
+    background-color: white;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.white {
+    background-color: white;
+    color: #00539a;
+}
+
+.blue {
+    background-color: #00539a;
+    color: white;
+}
+
+
+.margin {
+    margin: 5px;
+}
+
+.text{
+    color: snow;
+    text-shadow: 2px 2px 2px #DA1801;   
+    font-size: medium;
+}
+
+.marginSearch {
+    margin: 30px;
+}

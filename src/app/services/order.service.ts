@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerService {
+export class OrderService {
 
   private httpOptions: any;
 
@@ -20,9 +20,8 @@ export class CustomerService {
     };
   }
 
-  getCustomers(name:any): Observable<any> {
-    return this.http.get('api/Customer/' + name, this.httpOptions);
+  getOrders(id:any): Observable<any> {
+    return this.http.get('api/Order/Customer/' + id, this.httpOptions);
   }
-
 
 }

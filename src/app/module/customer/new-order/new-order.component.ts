@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EmployeeService } from 'src/app/services/employee.service';
 import { LoginService } from 'src/app/services/login.service';
 import { OrderService } from 'src/app/services/order.service';
+import { ProductService } from 'src/app/services/product.service';
+import { ShipperService } from 'src/app/services/shipper.service';
 
 @Component({
   selector: 'app-new-order',
@@ -28,13 +31,19 @@ export class NewOrderComponent implements OnInit {
     discount:  [0.0, [Validators.required]]
   });
 
-  constructor(private route: ActivatedRoute,private formBuilder: FormBuilder,private loginService: LoginService,private orderService: OrderService, private router: Router) { }
+  constructor(private route: ActivatedRoute,private formBuilder: FormBuilder,
+    private loginService: LoginService,private orderService: OrderService, private router: Router,
+    private employeeService:EmployeeService,productService :ProductService,shipperService:ShipperService
+    ) { }
 
   idCustomer:any;
 
   ngOnInit(): void {
     this.idCustomer = this.route.snapshot.params["id"];
     this.validate();
+
+    
+
   }
 
   validate(){

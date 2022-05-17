@@ -15,7 +15,7 @@
         <br />
         <br />
 
-        <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="margin">
+        <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="marginSearch">
            
             <div *ngIf="!(message === '')" class="alert alert-{{type_message}} row col-md-12">
                 <strong>{{message}}</strong>

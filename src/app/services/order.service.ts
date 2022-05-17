@@ -24,4 +24,8 @@ export class OrderService {
     return this.http.get('api/Order/Customer/' + id, this.httpOptions);
   }
 
+  newOrder(data: any): Observable<any> {
+    return this.http.post('api/Order', data, this.httpOptions);
+  }
+
 }

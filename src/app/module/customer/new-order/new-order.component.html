@@ -1,1 +1,111 @@
-<p>new-order works!</p>
+<div align="center">
+    <a href = "/home" routerLinkActive="active" class="margin">
+        <button class="btn btn-primary">Back to</button>
+    </a>
+    <a href = "/login" routerLinkActive="active" class="margin">
+        <button class="btn btn-success">Log out</button>
+    </a>
+</div>
+
+<div class="row">
+
+    <div class="col-md-4"> </div>
+
+    <div class="col-md-4">
+        <br />
+        <br />
+
+        <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="margin">
+           
+            <div *ngIf="!(message === '')" class="alert alert-{{type_message}} row col-md-12">
+                <strong>{{message}}</strong>
+            </div>
+
+            <h5 class="text2">New Order: </h5>
+
+            <div class="row col-md-12">
+                <p class="control-label text">Employee</p>
+                <input type="number" formControlName="empid" class="opacity form-control" id="empid"/>           
+            </div>
+
+            <div class="row col-md-12">
+                <p class="control-label text">Shipper</p>
+                <input type="number" formControlName="shipperid" class="opacity form-control" id="shipperid" />
+            </div>
+
+            <div class="row col-md-12">
+                <p class="control-label text">Order Date</p>
+                <input type="date" formControlName="orderdate" class="opacity form-control" id="orderdate" />
+            </div>
+
+            <div class="row col-md-12">
+                <p class="control-label text">Required Date</p>
+                <input type="date" formControlName="requireddate" class="opacity form-control" id="requireddate" />
+            </div>
+
+            <div class="row col-md-12">
+                <p class="control-label text">Shipped Date</p>
+                <input type="date" formControlName="shippeddate" class="opacity form-control" id="shippeddate" />
+            </div>
+
+            <div class="row col-md-12">
+                <p class="control-label text">Freight</p>
+                <input type="number" formControlName="freight" class="opacity form-control" id="freight" />
+            </div>
+
+            <div class="row col-md-12">
+                <p class="control-label text">Ship Name</p>
+                <input type="text" formControlName="shipname" class="opacity form-control" id="shipname" />
+            </div>
+
+            <div class="row col-md-12">
+                <p class="control-label text">Ship Address</p>
+                <input type="text" formControlName="shipaddress" class="opacity form-control" id="shipaddress" />
+            </div>
+
+            <div class="row col-md-12">
+                <p class="control-label text">Ship City</p>
+                <input type="text" formControlName="shipcity" class="opacity form-control" id="shipcity" />
+            </div>
+
+            <div class="row col-md-12">
+                <p class="control-label text">Ship Country</p>
+                <input type="text" formControlName="shipcountry" class="opacity form-control" id="shipcountry" />
+            </div>
+
+            <br/>
+            <h5 class="text2">Order Details:</h5>
+
+            <div class="row col-md-12">
+                <p class="control-label text">Product</p>
+                <input type="text" formControlName="productid" class="opacity form-control" id="productid" />
+            </div>
+
+            <div class="row col-md-12">
+                <p class="control-label text">Unit Price</p>
+                <input type="number" formControlName="unitprice" class="opacity form-control" id="unitprice" />
+            </div>
+
+            <div class="row col-md-12">
+                <p class="control-label text">Quantity</p>
+                <input type="number" formControlName="qty" class="opacity form-control" id="qty" />
+            </div>
+
+            <div class="row col-md-12">
+                <p class="control-label text">Discount</p>
+                <input type="number" formControlName="discount" class="opacity form-control" id="discount" />
+            </div>
+
+            <br/>
+            <div class="row col-md-12">
+                <button [disabled]="isSubmit && orderForm.invalid" class="btn btn-primary" type="submit">Save</button>
+            </div>
+        </form> 
+
+    </div>
+
+    <div class="col-md-4"></div>
+
+</div>
+<br />
+<br />

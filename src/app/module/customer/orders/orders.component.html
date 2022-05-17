@@ -1,6 +1,6 @@
 <div align="center">
     <a href = "/home" routerLinkActive="active" class="margin">
-        <button class="btn btn-primary">Back</button>
+        <button class="btn btn-primary">Back to</button>
     </a>
     <a href = "/login" routerLinkActive="active" class="margin">
         <button class="btn btn-success">Log out</button>
@@ -25,7 +25,7 @@
                 <h6 class="col-md-12"> <B>Ship Address:</B> {{item.shipaddress}}</h6>
                 <h6 class="col-md-12"> <B>Ship City:</B> {{item.shipcity}}</h6>
 
-                <h5>Products:</h5>
+                <h5 class="text2">Order Details:</h5>
                 <div *ngFor="let  detail of item.orderDetails">
                     <dd class="col-sm-12">
                         <b>{{detail.product.productname}} </b> {{detail.qty}} x {{detail.unitprice}} 

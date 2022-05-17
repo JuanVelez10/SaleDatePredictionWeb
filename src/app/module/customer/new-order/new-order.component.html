@@ -25,27 +25,31 @@
 
             <div class="row col-md-12">
                 <p class="control-label text">Employee</p>
-                <input type="number" formControlName="empid" class="opacity form-control" id="empid"/>           
+                <select [(ngModel)]="employees[0].empid" required formControlName="empid" id="empid"  class="opacity form-control">
+                    <option  *ngFor="let item of employees" value="{{item.empid}}">{{item.firstname +' ' +item.lastname}}</option>
+                </select>          
             </div>
 
             <div class="row col-md-12">
                 <p class="control-label text">Shipper</p>
-                <input type="number" formControlName="shipperid" class="opacity form-control" id="shipperid" />
+                <select  [(ngModel)]="shippers[0].shipperid" required formControlName="shipperid" id="shipperid"  class="opacity form-control">
+                    <option  *ngFor="let item of shippers" value="{{item.shipperid}}">{{item.companyname}}</option>
+                </select>  
             </div>
 
             <div class="row col-md-12">
                 <p class="control-label text">Order Date</p>
-                <input type="date" formControlName="orderdate" class="opacity form-control" id="orderdate" />
+                <input [ngModel] ="dt | date:'yyyy-MM-dd'" type="date" formControlName="orderdate" class="opacity form-control" id="orderdate" />
             </div>
 
             <div class="row col-md-12">
                 <p class="control-label text">Required Date</p>
-                <input type="date" formControlName="requireddate" class="opacity form-control" id="requireddate" />
+                <input [ngModel] ="dt | date:'yyyy-MM-dd'" type="date" formControlName="requireddate" class="opacity form-control" id="requireddate" />
             </div>
 
             <div class="row col-md-12">
                 <p class="control-label text">Shipped Date</p>
-                <input type="date" formControlName="shippeddate" class="opacity form-control" id="shippeddate" />
+                <input [ngModel] ="dt | date:'yyyy-MM-dd'" type="date" formControlName="shippeddate" class="opacity form-control" id="shippeddate" />
             </div>
 
             <div class="row col-md-12">
@@ -78,7 +82,9 @@
 
             <div class="row col-md-12">
                 <p class="control-label text">Product</p>
-                <input type="text" formControlName="productid" class="opacity form-control" id="productid" />
+                <select [(ngModel)]="products[0].productid"  required formControlName="productid" id="productid"  class="opacity form-control">
+                    <option  *ngFor="let item of products" value="{{item.productid}}">{{item.productname}}</option>
+                </select>  
             </div>
 
             <div class="row col-md-12">

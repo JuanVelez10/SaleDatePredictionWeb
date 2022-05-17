@@ -20,7 +20,7 @@ export class ProductService {
     };
   }
 
-  getProducts(id:any): Observable<any> {
+  getProducts(): Observable<any> {
     return this.http.get('api/Product', this.httpOptions);
   }
 }

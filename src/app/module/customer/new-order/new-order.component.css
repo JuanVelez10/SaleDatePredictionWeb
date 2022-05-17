@@ -50,3 +50,5 @@
 .marginSearch {
     margin: 30px;
 }
+
+select option:empty { display:none }

@@ -20,7 +20,7 @@ export class EmployeeService {
     };
   }
 
-  getEmployees(id:any): Observable<any> {
+  getEmployees(): Observable<any> {
     return this.http.get('api/Employee', this.httpOptions);
   }
 

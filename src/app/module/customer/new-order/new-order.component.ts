@@ -33,17 +33,20 @@ export class NewOrderComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,private formBuilder: FormBuilder,
     private loginService: LoginService,private orderService: OrderService, private router: Router,
-    private employeeService:EmployeeService,productService :ProductService,shipperService:ShipperService
+    private employeeService:EmployeeService,private productService :ProductService,private shipperService:ShipperService
     ) { }
 
   idCustomer:any;
-
+  employees:any;
+  shippers:any;
+  products:any;
+  dt : any = new Date();
   ngOnInit(): void {
     this.idCustomer = this.route.snapshot.params["id"];
     this.validate();
-
-    
-
+    this.loadEmployees();
+    this.loadShippers();
+    this.loadproducts();
   }
 
   validate(){
@@ -117,6 +120,49 @@ export class NewOrderComponent implements OnInit {
 
   }
 
+  loadEmployees(){
+    this.employeeService.getEmployees().subscribe(
+      result => {
+        if(result != null){
+          this.employees = result;
+        }
+        else{
+          this.message ="Not Found !!";
+        }
+      },
+      error => {
+        this.message ="Error !!";
+      });
+  }
 
+  loadShippers(){
+    this.shipperService.getShippers().subscribe(
+      result => {
+        if(result != null){
+          this.shippers = result;
+        }
+        else{
+          this.message ="Not Found !!";
+        }
+      },
+      error => {
+        this.message ="Error !!";
+      });
+  }
+
+  loadproducts(){
+    this.productService.getProducts().subscribe(
+      result => {
+        if(result != null){
+          this.products = result;
+        }
+        else{
+          this.message ="Not Found !!";
+        }
+      },
+      error => {
+        this.message ="Error !!";
+      });
+  }
 
 }

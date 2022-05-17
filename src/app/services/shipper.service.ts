@@ -20,7 +20,7 @@ export class ShipperService {
     };
   }
 
-  getShippers(id:any): Observable<any> {
+  getShippers(): Observable<any> {
     return this.http.get('api/Shipper', this.httpOptions);
   }
 }

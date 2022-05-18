@@ -41,6 +41,7 @@ export class NewOrderComponent implements OnInit {
   shippers:any;
   products:any;
   dt : any = new Date();
+
   ngOnInit(): void {
     this.idCustomer = this.route.snapshot.params["id"];
     this.validate();
@@ -61,24 +62,6 @@ export class NewOrderComponent implements OnInit {
       });
   }
 
-  OrderRequest: any = {
-    custid: 0,
-    empid: 0,
-    shipperid: 0,
-    orderdate: '',
-    requireddate: '',
-    shippeddate: '',
-    freight: 0.0,
-    shipname: '',
-    shipaddress: '',
-    shipcity: '',
-    shipcountry: '',
-    productid: 0,
-    unitprice: 0.0,
-    qty: 0,
-    discount: 0.0
-  };
-
   message : string = "";
   type_message : string ="danger";
   isSubmit=false;
@@ -91,21 +74,14 @@ export class NewOrderComponent implements OnInit {
       return;
     }
 
-    this.OrderRequest.custid = this.idCustomer;
-    this.OrderRequest.empid = this.orderForm.controls.empid.value;
-    this.OrderRequest.shipperid = this.orderForm.controls.shipperid.value;
-    this.OrderRequest.orderdate = this.orderForm.controls.orderdate.value;
-    this.OrderRequest.requireddate = this.orderForm.controls.requireddate.value;
-    this.OrderRequest.shippeddate = this.orderForm.controls.shippeddate.value;
-    this.OrderRequest.freight = this.orderForm.controls.freight.value;
-    this.OrderRequest.shipname = this.orderForm.controls.shipname.value;
-    this.OrderRequest.shipaddress = this.orderForm.controls.shipaddress.value;
-    this.OrderRequest.shipcity = this.orderForm.controls.shipcity.value;
-    this.OrderRequest.shipcountry = this.orderForm.controls.shipcountry.value;
-    this.OrderRequest.productid = this.orderForm.controls.productid.value;
-    this.OrderRequest.unitprice = this.orderForm.controls.unitprice.value;
-    this.OrderRequest.qty = this.orderForm.controls.qty.value;
-    this.OrderRequest.discount = this.orderForm.controls.discount.value;
+    var productid = this.orderForm.controls.productid.value;
+    var unitprice = this.products.filter((product: { productid: any; }) => product.productid == productid)[0].unitprice;
+    if (unitprice != this.orderForm.controls.unitprice.value){
+      this.message = "It is not the price of the product !!";
+      return;
+    }
+
+    this.convertFromToOrderRequest();
 
     this.orderService.newOrder(this.OrderRequest).subscribe(result => {
         if(result.data == true){
@@ -165,4 +141,59 @@ export class NewOrderComponent implements OnInit {
       });
   }
 
+  getUnitPrice(){
+    var productid = this.orderForm.controls.productid.value;
+    var unitprice = this.products.filter((product: { productid: any; }) => product.productid == productid)[0].unitprice;
+    this.orderForm.controls.unitprice.setValue(unitprice);
+  }
+
+  convertFromToOrderRequest(){
+    this.OrderRequest.custid = this.idCustomer;
+    this.OrderRequest.empid = this.orderForm.controls.empid.value;
+    this.OrderRequest.shipperid = this.orderForm.controls.shipperid.value;
+    this.OrderRequest.orderdate = this.orderForm.controls.orderdate.value;
+    this.OrderRequest.requireddate = this.orderForm.controls.requireddate.value;
+    this.OrderRequest.shippeddate = this.orderForm.controls.shippeddate.value;
+    this.OrderRequest.freight = this.orderForm.controls.freight.value;
+    this.OrderRequest.shipname = this.orderForm.controls.shipname.value;
+    this.OrderRequest.shipaddress = this.orderForm.controls.shipaddress.value;
+    this.OrderRequest.shipcity = this.orderForm.controls.shipcity.value;
+    this.OrderRequest.shipcountry = this.orderForm.controls.shipcountry.value;
+    this.OrderRequest.productid = this.orderForm.controls.productid.value;
+    this.OrderRequest.unitprice = this.orderForm.controls.unitprice.value;
+    this.OrderRequest.qty = this.orderForm.controls.qty.value;
+    this.OrderRequest.discount = this.orderForm.controls.discount.value;
+  }
+
+  OrderRequest: any = {
+    custid: 0,
+    empid: 0,
+    shipperid: 0,
+    orderdate: '',
+    requireddate: '',
+    shippeddate: '',
+    freight: 0.0,
+    shipname: '',
+    shipaddress: '',
+    shipcity: '',
+    shipcountry: '',
+    productid: 0,
+    unitprice: 0.0,
+    qty: 0,
+    discount: 0.0
+  };
+
+  /*These simulated objects are left so as not to leave free text fields, 
+  but in reality they must be services that come from the api with a better 
+  structure for countries and cities, for example.*/
+  qytSel: string  = '1';
+  countrySel: string  = 'USA';
+  citySel: string  = 'Aachen';
+  discountSel: string  = '0';
+  freightSel: string  = '10';
+  qyt=[1,2,3,4,5,6,7,8,9,10];
+  countries = ['Finland','USA','Italy','Brazil','Germany','Switzerland','Mexico','Sweden','Argentina','Austria','UK','Poland','Canada','Ireland','Norway','France','Belgium','Spain','Venezuela','Denmark','Colombia','Portugal'];
+  cities =["Aachen","Albuquerque","Anchorage","Århus","Barcelona","Barquisimeto","Bergamo","Berlin","Bern","Boise","Bräcke","Brandenburg","Bruxelles","Buenos Aires","Butte","Campinas","Caracas","Charleroi","Colchester","Cork","Cowes","Cunewalde","Elgin","Eugene","Frankfurt a.M.","Genève","Graz","Helsinki","I. de Margarita","Juan Prueba","Kirkland","Kobenhavn","Köln","Lander","Leipzig","Lille","Lisboa","London","Luleå","Lyon","Madrid","Manizales","Mannheim","Marseille","México D.F.","Portland","Reggio Emilia","Reims","Resende","Rio de Janeiro","Salzburg","San Cristóbal","San Francisco","Sao Paulo","Seattle","Sevilla","Stavern","Strasbourg","Stuttgart","Torino","Toulouse","Tsawassen","Vancouver","Versailles","Walla Walla","Warszawa"];
+  discounts=[0.0,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55]
+  freights=[10,20,30,40,50,60,70,80,90,100,200,300,400,500,1000]
 }

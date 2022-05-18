@@ -12,8 +12,6 @@
     <div class="col-md-4"> </div>
 
     <div class="col-md-4">
-        <br />
-        <br />
 
         <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="marginSearch">
            
@@ -25,14 +23,14 @@
 
             <div class="row col-md-12">
                 <p class="control-label text">Employee</p>
-                <select [(ngModel)]="employees[0].empid" required formControlName="empid" id="empid"  class="opacity form-control">
-                    <option  *ngFor="let item of employees" value="{{item.empid}}">{{item.firstname +' ' +item.lastname}}</option>
+                <select [ngModel]="employees[0].empid" required formControlName="empid" id="empid"  class="opacity form-control">
+                    <option *ngFor="let item of employees" value="{{item.empid}}">{{item.firstname +' ' +item.lastname}}</option>
                 </select>          
             </div>
 
             <div class="row col-md-12">
                 <p class="control-label text">Shipper</p>
-                <select  [(ngModel)]="shippers[0].shipperid" required formControlName="shipperid" id="shipperid"  class="opacity form-control">
+                <select [ngModel]="shippers[0].shipperid" required formControlName="shipperid" id="shipperid"  class="opacity form-control">
                     <option  *ngFor="let item of shippers" value="{{item.shipperid}}">{{item.companyname}}</option>
                 </select>  
             </div>
@@ -54,7 +52,9 @@
 
             <div class="row col-md-12">
                 <p class="control-label text">Freight</p>
-                <input type="number" formControlName="freight" class="opacity form-control" id="freight" />
+                <select [ngModel]="freightSel" required formControlName="freight" id="freight"  class="opacity form-control">
+                    <option  *ngFor="let item of freights" value="{{item}}">{{item}}</option>
+                </select>  
             </div>
 
             <div class="row col-md-12">
@@ -69,12 +69,16 @@
 
             <div class="row col-md-12">
                 <p class="control-label text">Ship City</p>
-                <input type="text" formControlName="shipcity" class="opacity form-control" id="shipcity" />
+                <select [(ngModel)]="citySel"  required formControlName="shipcity" id="shipcity"  class="opacity form-control">
+                    <option  *ngFor="let item of cities" value="{{item}}">{{item}}</option>
+                </select>  
             </div>
 
             <div class="row col-md-12">
                 <p class="control-label text">Ship Country</p>
-                <input type="text" formControlName="shipcountry" class="opacity form-control" id="shipcountry" />
+                <select [(ngModel)]="countrySel"  required formControlName="shipcountry" id="shipcountry"  class="opacity form-control">
+                    <option  *ngFor="let item of countries" value="{{item}}">{{item}}</option>
+                </select>  
             </div>
 
             <br/>
@@ -82,24 +86,28 @@
 
             <div class="row col-md-12">
                 <p class="control-label text">Product</p>
-                <select [(ngModel)]="products[0].productid"  required formControlName="productid" id="productid"  class="opacity form-control">
+                <select [ngModel]="products[0].productid" required formControlName="productid" id="productid"  class="opacity form-control" (change)="getUnitPrice()">
                     <option  *ngFor="let item of products" value="{{item.productid}}">{{item.productname}}</option>
                 </select>  
             </div>
 
             <div class="row col-md-12">
                 <p class="control-label text">Unit Price</p>
-                <input type="number" formControlName="unitprice" class="opacity form-control" id="unitprice" />
+                <input type="number" [ngModel]="products[0].unitprice" formControlName="unitprice" class="opacity form-control" id="unitprice" readonly/>
             </div>
 
             <div class="row col-md-12">
                 <p class="control-label text">Quantity</p>
-                <input type="number" formControlName="qty" class="opacity form-control" id="qty" />
+                <select [(ngModel)]="qytSel"  required formControlName="qty" id="qty"  class="opacity form-control">
+                    <option  *ngFor="let item of qyt" value="{{item}}">{{item}}</option>
+                </select>  
             </div>
 
             <div class="row col-md-12">
                 <p class="control-label text">Discount</p>
-                <input type="number" formControlName="discount" class="opacity form-control" id="discount" />
+                <select [ngModel]="discountSel" required formControlName="discount" id="discount"  class="opacity form-control">
+                    <option  *ngFor="let item of discounts" value="{{item}}">{{item}}</option>
+                </select>  
             </div>
 
             <br/>

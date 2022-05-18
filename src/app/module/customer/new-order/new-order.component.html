@@ -59,12 +59,20 @@
 
             <div class="row col-md-12">
                 <p class="control-label text">Ship Name</p>
-                <input type="text" formControlName="shipname" class="opacity form-control" id="shipname" />
+                <input type="text" formControlName="shipname" class="opacity form-control" id="shipname" [ngClass]="{ 'is-invalid': isSubmit  && orderForm.controls.shipname.errors }"/>
+               
+                <div class="invalid-feedback" *ngIf="orderForm.controls.shipname.errors">
+                    <div *ngIf="isSubmit  && orderForm.controls.shipname.errors.required">Ship Name is required</div>
+                </div>
             </div>
 
             <div class="row col-md-12">
                 <p class="control-label text">Ship Address</p>
-                <input type="text" formControlName="shipaddress" class="opacity form-control" id="shipaddress" />
+                <input type="text" formControlName="shipaddress" class="opacity form-control" id="shipaddress"  [ngClass]="{ 'is-invalid': isSubmit  && orderForm.controls.shipaddress.errors }"/>
+            
+                <div class="invalid-feedback" *ngIf="orderForm.controls.shipaddress.errors">
+                    <div *ngIf="isSubmit  && orderForm.controls.shipaddress.errors.required">Ship Address is required</div>
+                </div>
             </div>
 
             <div class="row col-md-12">
